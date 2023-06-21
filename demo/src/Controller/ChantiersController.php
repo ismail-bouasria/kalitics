@@ -51,11 +51,13 @@ class ChantiersController extends AbstractController
      */
     public function show(Chantiers $chantier, PointagesRepository $pointagesRepository, $id): Response
     {
+        $nombrePointages = count($pointagesRepository->findBy(['chantier'=>$id]));
+        $heuresPointe = $pointagesRepository->sumPointageByChantier($id)[0]['heures'];
 
-        $nombrePointages = $pointagesRepository->findBy(['chantier'=>$id]);
-        dd($nombrePointagespointages);
         return $this->render('chantiers/show.html.twig', [
             'chantier' => $chantier,
+            'nombrePointages' => $nombrePointages,
+            'heure' => $heuresPointe,
         ]);
     }
 

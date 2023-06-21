@@ -50,19 +50,18 @@ class PointagesRepository extends ServiceEntityRepository
     // /**
     //  * @return Pointages[] Returns an array of Pointages objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function sumPointageByChantier($id)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+            ->select('SUM(p.duree) as heures')
+            ->Where('p.chantier = :id')
+            ->setParameter('id', $id)
             ->getQuery()
-            ->getResult()
+            ->getArrayResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Pointages
