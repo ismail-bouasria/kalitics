@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pointages index{% endblock %}
+
+{% block body %}
+    <h1>Pointages index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Duree</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pointage in pointages %}
+            <tr>
+                <td>{{ pointage.id }}</td>
+                <td>{{ pointage.date ? pointage.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ pointage.duree }}</td>
+                <td>
+                    <a href="{{ path('app_pointages_show', {'id': pointage.id}) }}">show</a>
+                    <a href="{{ path('app_pointages_edit', {'id': pointage.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_pointages_new') }}">Create new</a>
+{% endblock %}
