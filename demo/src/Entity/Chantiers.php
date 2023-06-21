@@ -30,7 +30,7 @@ class Chantiers
     private $adresse;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date",nullable=false)
      */
     private $dateDebut;
 

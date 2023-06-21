@@ -3,37 +3,56 @@
 {% block title %}Chantiers index{% endblock %}
 
 {% block body %}
-    <h1>Chantiers index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Adresse</th>
-                <th>DateDebut</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for chantier in chantiers %}
-            <tr>
-                <td>{{ chantier.id }}</td>
-                <td>{{ chantier.nom }}</td>
-                <td>{{ chantier.adresse }}</td>
-                <td>{{ chantier.dateDebut ? chantier.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_chantiers_show', {'id': chantier.id}) }}">show</a>
-                    <a href="{{ path('app_chantiers_edit', {'id': chantier.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <h2 class="m-3"> Chantiers</h2>
 
-    <a href="{{ path('app_chantiers_new') }}">Create new</a>
+    <div class="card">
+        <div class="card-header">
+            <h4> Listes des chantiers</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-responsive-sm  ">
+                <thead>
+                <tr class="table-light">
+                    <th>Nom</th>
+                    <th>Adresse</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for chantier in chantiers %}
+                    <tr>
+                        <td>{{ chantier.nom }}</td>
+                        <td>{{ chantier.adresse }}</td>
+                        <td>{{ chantier.dateDebut ? chantier.dateDebut|date('d-m-Y') : '' }}</td>
+                        <td class="d-flex justify-content-center">
+                            <a href="{{ path('app_chantiers_edit', {'id': chantier.id}) }}">
+                                <button class="btn">
+                                    <i class="fa-solid fa-pen-to-square text-warning"></i>
+                                </button>
+                            </a>
+                            {% include 'chantiers/_delete_form.html.twig' %}
+                            <a href="{{ path('app_chantiers_show', {'id': chantier.id}) }}">
+                                <button class="btn">
+                                    <i class="fa-regular fa-eye text-info"></i>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">aucun résultat trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+        <div class="card-footer d-flex justify-content-center">
+            <a href="{{ path('app_chantiers_new') }}">
+                <button type="button" class="btn btn-success">Créer un chantier</button>
+            </a>
+        </div>
+    </div>
 {% endblock %}

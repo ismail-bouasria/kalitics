@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Chantiers;
 use App\Form\ChantiersType;
 use App\Repository\ChantiersRepository;
+use App\Repository\PointagesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,8 +49,11 @@ class ChantiersController extends AbstractController
     /**
      * @Route("/{id}", name="app_chantiers_show", methods={"GET"})
      */
-    public function show(Chantiers $chantier): Response
+    public function show(Chantiers $chantier, PointagesRepository $pointagesRepository, $id): Response
     {
+
+        $nombrePointages = $pointagesRepository->findBy(['chantier'=>$id]);
+        dd($nombrePointagespointages);
         return $this->render('chantiers/show.html.twig', [
             'chantier' => $chantier,
         ]);

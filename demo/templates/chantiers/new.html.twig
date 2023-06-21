@@ -3,9 +3,17 @@
 {% block title %}New Chantiers{% endblock %}
 
 {% block body %}
-    <h1>Create new Chantiers</h1>
-
-    {{ include('chantiers/_form.html.twig') }}
-
-    <a href="{{ path('app_chantiers_index') }}">back to list</a>
+    <div class="d-flex justify-content-center w-100">
+        <div class="card w-50 mt-5">
+            <div class="card-header">
+                <h2>Créer un Chantier</h2>
+            </div>
+            <div class="card-body"> {{ include('chantiers/_form.html.twig') }}</div>
+            <div class="card-footer">
+                <a href="{{ path('app_chantiers_index') }}">
+                    <button type="button" class="btn btn-light">Retour</button>
+                </a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

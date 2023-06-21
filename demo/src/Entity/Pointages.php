@@ -28,7 +28,7 @@ class Pointages
     private $chantier;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date", nullable=false)
      */
     private $date;
 

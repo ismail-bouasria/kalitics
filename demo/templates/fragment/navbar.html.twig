@@ -5,18 +5,22 @@
                     src="https://www.kalitics-btp.com/assets/images/SVG_vectoriel/Big/Blanc+orange.svg"
                  alt="Kaliptics">
         </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Utilisateurs
+                        <a class="nav-link active" href="{{ path('app_utilisateurs_index') }}">Utilisateurs
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Chantiers</a>
+                        <a class="nav-link" href="{{ path('app_chantiers_index') }}">Chantiers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pointages</a>
+                        <a class="nav-link" href="{{ path('app_pointages_index') }}">Pointages</a>
                     </li>
                 </ul>
             </div>

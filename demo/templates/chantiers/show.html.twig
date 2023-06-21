@@ -3,6 +3,43 @@
 {% block title %}Chantiers{% endblock %}
 
 {% block body %}
+
+    <div class="d-flex justify-content-center w-100">
+        <div class="card w-50 mt-5" >
+            <div class="card-header">
+                <h2>{{ chantier.nom }}</h2>
+            </div>
+            <div class="card-body">
+
+                <table class="table bg-light">
+                    <tbody>
+                    <tr>
+                        <th>Adresse :</th>
+                        <td>{{ chantier.adresse }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date-Début :</th>
+                        <td>{{ chantier.dateDebut|date('d-m-Y')}}</td>
+                    </tr>
+                    <tr>
+                        <th>Nombre de pointage :</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th> Heures Pointées :</th>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+                <a href="{{ path('app_chantiers_index') }}">
+                    <button type="button" class="btn btn-light">Retour</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <h1>Chantiers</h1>
 
     <table class="table">

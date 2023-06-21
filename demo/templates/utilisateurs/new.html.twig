@@ -1,11 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Utilisateurs{% endblock %}
+{% block title %}Créer Utilisateur{% endblock %}
 
 {% block body %}
-    <h1>Create new Utilisateurs</h1>
+    <div class="d-flex justify-content-center w-100">
+        <div class="card w-50 mt-5">
+            <div class="card-header">
+                <h2>Créer un Utilisateur</h2>
+            </div>
+            <div class="card-body">
 
-    {{ include('utilisateurs/_form.html.twig') }}
+                {{ include('utilisateurs/_form.html.twig') }}
 
-    <a href="{{ path('app_utilisateurs_index') }}">back to list</a>
+
+            </div>
+            <div class="card-footer">
+                <a href="{{ path('app_utilisateurs_index') }}">
+                    <button type="button" class="btn btn-light">Retour</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
 {% endblock %}

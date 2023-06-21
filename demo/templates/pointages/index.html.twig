@@ -3,35 +3,49 @@
 {% block title %}Pointages index{% endblock %}
 
 {% block body %}
-    <h1>Pointages index</h1>
+    <h2 class="m-3">Pointages</h2>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Date</th>
-                <th>Duree</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for pointage in pointages %}
-            <tr>
-                <td>{{ pointage.id }}</td>
-                <td>{{ pointage.date ? pointage.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ pointage.duree }}</td>
-                <td>
-                    <a href="{{ path('app_pointages_show', {'id': pointage.id}) }}">show</a>
-                    <a href="{{ path('app_pointages_edit', {'id': pointage.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="card">
+        <div class="card-header">
+            <h4> Listes des pointages</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-responsive-sm  ">
+                <thead>
+                <tr class="table-light">
+                    <th>Date</th>
+                    <th>Durée</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for pointage in pointages %}
+                    <tr>
+                        <td>{{ pointage.date|date('d-m-Y')}}</td>
+                        <td>{{ pointage.duree }}</td>
+                        <td class="d-flex justify-content-center">
+                            <button class="btn">
+                                <a href="{{ path('app_pointages_edit', {'id': pointage.id}) }}">
+                                    <i class="fa-solid fa-pen-to-square text-warning"></i>
+                                </a>
+                            </button>
+                            {{ include('pointages/_delete_form.html.twig') }}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td class="text-center" colspan="5">Aucun résultat trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
-    <a href="{{ path('app_pointages_new') }}">Create new</a>
+        </div>
+
+        <div class="card-footer d-flex justify-content-center">
+            <a href="{{ path('app_pointages_new') }}">
+                <button type="button" class="btn btn-success">Créer un pointage</button>
+            </a>
+        </div>
+    </div>
 {% endblock %}
