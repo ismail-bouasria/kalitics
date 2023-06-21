@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\UtilisateursRepository;
+use App\Repository\ChantiersRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=UtilisateursRepository::class)
+ * @ORM\Entity(repositoryClass=ChantiersRepository::class)
  */
-class Utilisateurs
+class Chantiers
 {
     /**
      * @ORM\Id
@@ -27,15 +27,15 @@ class Utilisateurs
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $prenom;
+    private $adresse;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="datetime")
      */
-    private $matricule;
+    private $dateDebut;
 
     /**
-     * @ORM\OneToMany(targetEntity=Pointages::class, mappedBy="utilisateur")
+     * @ORM\OneToMany(targetEntity=Pointages::class, mappedBy="chantier")
      */
     private $pointages;
 
@@ -61,26 +61,26 @@ class Utilisateurs
         return $this;
     }
 
-    public function getPrenom(): ?string
+    public function getAdresse(): ?string
     {
-        return $this->prenom;
+        return $this->adresse;
     }
 
-    public function setPrenom(string $prenom): self
+    public function setAdresse(string $adresse): self
     {
-        $this->prenom = $prenom;
+        $this->adresse = $adresse;
 
         return $this;
     }
 
-    public function getMatricule(): ?string
+    public function getDateDebut(): ?\DateTimeInterface
     {
-        return $this->matricule;
+        return $this->dateDebut;
     }
 
-    public function setMatricule(string $matricule): self
+    public function setDateDebut(\DateTimeInterface $dateDebut): self
     {
-        $this->matricule = $matricule;
+        $this->dateDebut = $dateDebut;
 
         return $this;
     }
@@ -97,7 +97,7 @@ class Utilisateurs
     {
         if (!$this->pointages->contains($pointage)) {
             $this->pointages[] = $pointage;
-            $pointage->setUtilisateur($this);
+            $pointage->setChantier($this);
         }
 
         return $this;
@@ -107,8 +107,8 @@ class Utilisateurs
     {
         if ($this->pointages->removeElement($pointage)) {
             // set the owning side to null (unless already changed)
-            if ($pointage->getUtilisateur() === $this) {
-                $pointage->setUtilisateur(null);
+            if ($pointage->getChantier() === $this) {
+                $pointage->setChantier(null);
             }
         }
 
