@@ -62,7 +62,16 @@ class PointagesRepository extends ServiceEntityRepository
         ;
     }
 
-
+    public function sumPointageByUtilisateur($id)
+    {
+        return $this->createQueryBuilder('p')
+            ->select('SUM(p.duree) as heures')
+            ->Where('p.utilisateur = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getArrayResult()
+            ;
+    }
     /*
     public function findOneBySomeField($value): ?Pointages
     {

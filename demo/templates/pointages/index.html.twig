@@ -13,6 +13,8 @@
             <table class="table table-bordered table-responsive-sm  ">
                 <thead>
                 <tr class="table-light">
+                    <th>Utilisateur</th>
+                    <th>Chantier</th>
                     <th>Date</th>
                     <th>Durée</th>
                     <th>Actions</th>
@@ -21,6 +23,8 @@
                 <tbody>
                 {% for pointage in pointages %}
                     <tr>
+                        <td>{{ pointage.utilisateur.nom}}</td>
+                        <td>{{ pointage.chantier.nom }}</td>
                         <td>{{ pointage.date|date('d-m-Y')}}</td>
                         <td>{{ pointage.duree }}</td>
                         <td class="d-flex justify-content-center">

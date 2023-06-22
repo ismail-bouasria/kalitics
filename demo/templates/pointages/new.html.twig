@@ -9,13 +9,68 @@
                 <h2>Créer un Pointage</h2>
             </div>
             <div class="card-body">
+                <div class="text-center text-danger">
+                    <span id="error"></span>
+                </div>
+
                 {{ include('pointages/_form.html.twig') }}
             </div>
             <div class="card-footer">
                 <a href="{{ path('app_pointages_index') }}">
-                    <button type="button" class="btn btn-light">Retour</button>
+                    <button class="btn btn-light">Retour</button>
                 </a>
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+
+            $input = $('#pointages_utilisateur,#pointages_chantier,#pointages_duree ');
+            $button = $('#button');
+
+            $input.change(function () {
+
+                    const utilisateur = $('#pointages_utilisateur').val();
+                    const chantier = $('#pointages_chantier').val();
+                    const duree = $('#pointages_duree').val()
+                    const url = '{{ path('app_pointages_new') }}';
+                    const data = {
+                        utilisateurId: utilisateur,
+                        chantierId: chantier,
+                        dureeHeures: duree
+                    };
+
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: JSON.stringify(data),
+                        contentType: 'application/json',
+                        success: function (response) {
+                            if (response) {
+                                $button.prop('disabled', true)
+
+                                if (response.errorPointage) {
+                                    $('#pointages_utilisateur,#pointages_chantier').addClass('bg-danger text-white');
+
+                                }
+                                if (response.errorTimeLimite) {
+                                    $('#pointages_utilisateur,#pointages_duree').addClass('bg-danger text-white');
+                                    $('#error').text(response.errorTimeLimite)
+                                }
+                            }
+
+                        },
+                        error: function (xhr, status, error) {
+                            $input.removeClass('bg-danger text-white');
+                            $('#error').text('')
+                            $button.prop('disabled', false)
+                        }
+                    });
+                }
+            )
+            ;
+        });
+    </script>
+
 {% endblock %}
