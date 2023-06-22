@@ -30,6 +30,9 @@
             $button = $('#button');
 
             $input.change(function () {
+                $input.removeClass('bg-danger text-white');
+                $('#error').text('')
+                $button.prop('disabled', false)
 
                     const utilisateur = $('#pointages_utilisateur').val();
                     const chantier = $('#pointages_chantier').val();
@@ -52,7 +55,7 @@
 
                                 if (response.errorPointage) {
                                     $('#pointages_utilisateur,#pointages_chantier').addClass('bg-danger text-white');
-
+                                    $('#error').text(response.errorPointage)
                                 }
                                 if (response.errorTimeLimite) {
                                     $('#pointages_utilisateur,#pointages_duree').addClass('bg-danger text-white');
@@ -62,9 +65,7 @@
 
                         },
                         error: function (xhr, status, error) {
-                            $input.removeClass('bg-danger text-white');
-                            $('#error').text('')
-                            $button.prop('disabled', false)
+
                         }
                     });
                 }
