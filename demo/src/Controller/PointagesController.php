@@ -66,7 +66,7 @@ class PointagesController extends AbstractController
         }
         if ($form->isSubmitted() && $form->isValid()) {
             $pointagesRepository->add($pointage);
-            return $this->redirectToRoute('app_pointages_new', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_pointages_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('pointages/new.html.twig', [

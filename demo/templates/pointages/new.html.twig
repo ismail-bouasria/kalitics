@@ -51,15 +51,16 @@
                         contentType: 'application/json',
                         success: function (response) {
                             if (response) {
-                                $button.prop('disabled', true)
 
                                 if (response.errorPointage) {
                                     $('#pointages_utilisateur,#pointages_chantier').addClass('bg-danger text-white');
                                     $('#error').text(response.errorPointage)
+                                    $button.prop('disabled', true)
                                 }
                                 if (response.errorTimeLimite) {
                                     $('#pointages_utilisateur,#pointages_duree').addClass('bg-danger text-white');
                                     $('#error').text(response.errorTimeLimite)
+                                    $button.prop('disabled', true)
                                 }
                             }
 
