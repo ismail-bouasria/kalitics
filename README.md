@@ -8,9 +8,9 @@ Ce projet est basé sur le framework Symfony 4 et contient les fonctionnalités 
 - Réaliser un CRUD pour les entités ainsi que les routes vers les pages
 - Soumettre le formulaire Pointages avec des restrictions : La création de « pointages » sera soumise à une validation 
 spécifique des données. Les validations de formulaire à mettre en place sont les suivantes :
-  1. Un utilisateur ne peut pas être pointé deux fois le même jour sur le même chantier.
-  2. La somme des durées des pointages d’un utilisateur pour une semaine ne pourra pas dépasser 35 heures.
-  3. Les messages d’erreur du formulaire seront affichés sur ce même formulaire au fur et à mesure de la
+  I. Un utilisateur ne peut pas être pointé deux fois le même jour sur le même chantier.
+  II. La somme des durées des pointages d’un utilisateur pour une semaine ne pourra pas dépasser 35 heures.
+  III. Les messages d’erreur du formulaire seront affichés sur ce même formulaire au fur et à mesure de la
   saisie des données, dès qu’une contrainte sera atteinte. ( utilisation de requête Ajax et d'action coté client JS)
 - Utilisation du thème Darkly de bootswatch : https://bootswatch.com/darkly/
 - Requête Ajax envoi de donné vers le controller et recuperation des "response".
