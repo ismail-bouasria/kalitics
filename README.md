@@ -1,6 +1,6 @@
 # kalitics
 
-# Projet demo Symfony 4
+# Projet Pointage Symfony 4 
 
 Ce projet est basé sur le framework Symfony 4 et contient les fonctionnalités suivantes :
 
